@@ -537,7 +537,7 @@ Combines Rust's performance and safety with Angular's enterprise capabilities to
 - Maintain todo states (completed/incomplete)
 - Persist data across application sessions
 
-This setup will create a full-stack todo application with proper separation between frontend and backend, secure cross-origin communication, and complete task management capabilities.
+This setup will create a full-stack todo application with proper separation between frontend and backend, secure cross-origin communication, and complete task management capabilities. use context7
 
 ---
 
@@ -582,6 +582,7 @@ Application bundle generation failed. [1.235 seconds]
 - Integrate ng-zorro UI components and styling
 - Center-align the todo canvas on the screen
 - Improve the overall presentation and user experience
+use context7
 
 ### Ng-Zorro Issues
 
