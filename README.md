@@ -465,7 +465,7 @@ See Gemini CLI Configuration for details.
 
 ---
 
-## Todo App Development Guide
+## Todo App AI Development Guide
 
 ### Prompt Steps
 
