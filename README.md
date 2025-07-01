@@ -479,7 +479,7 @@ npx https://github.com/google-gemini/gemini-cli
 
 ### Developer Persona
 
-Enter the below persona as the system prompt:
+Enter the below persona as the prompt:
 
 #### Full-Stack Developer Persona: Kenneth Phang
 
