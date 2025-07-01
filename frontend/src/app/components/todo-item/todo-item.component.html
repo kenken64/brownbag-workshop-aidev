@@ -1,0 +1,16 @@
+<div class="todo-item" [class.completed]="todo.completed">
+  <label nz-checkbox [ngModel]="todo.completed" (ngModelChange)="onToggleCompleted()">
+    <ng-container *ngIf="!isEditing">
+      <span class="todo-title">{{ todo.title }}</span>
+    </ng-container>
+  </label>
+  <ng-container *ngIf="isEditing">
+    <input nz-input type="text" [(ngModel)]="editedTitle">
+  </ng-container>
+  <span class="todo-actions">
+    <button nz-button nzType="default" (click)="onEdit()" *ngIf="!isEditing">Edit</button>
+    <button nz-button nzType="primary" (click)="onSaveEdit()" *ngIf="isEditing">Save</button>
+    <button nz-button nzType="default" (click)="onCancelEdit()" *ngIf="isEditing">Cancel</button>
+    <button nz-button nzType="default" nzDanger (click)="onDelete()">Delete</button>
+  </span>
+</div>

@@ -1,0 +1,11 @@
+<div class="todo-container">
+  <h2>Todo List</h2>
+  <app-todo-form (addTodo)="addTodo($event)"></app-todo-form>
+  <nz-list nzBordered [nzDataSource]="todos" [nzRenderItem]="itemTemplate">
+    <ng-template #itemTemplate let-item>
+      <nz-list-item>
+        <app-todo-item [todo]="item" (updateTodo)="updateTodo($event)" (deleteTodo)="deleteTodo($event)" (toggleCompleted)="toggleCompleted($event)"></app-todo-item>
+      </nz-list-item>
+    </ng-template>
+  </nz-list>
+</div>
