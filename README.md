@@ -618,4 +618,4 @@ Application bundle generation failed. [1.235 seconds]
 This workshop guide provides comprehensive instructions for setting up a full-stack development environment and building a todo application using modern tools and AI assistance.
 
 
-GIT PUSH YOUR CODE !
+### GIT PUSH YOUR CODE ! Kindly use the Gemini CLI not the git commands
