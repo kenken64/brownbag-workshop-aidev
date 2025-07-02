@@ -21,4 +21,5 @@
 .DS_Store
 .vscode/
 backend/Dockerfile
+railway.json
 

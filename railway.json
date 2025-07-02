@@ -1,0 +1,7 @@
+{
+  "services": {
+    "impartial-intuition": {
+      "path": "backend"
+    }
+  }
+}
