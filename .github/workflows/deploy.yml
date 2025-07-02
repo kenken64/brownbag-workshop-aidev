@@ -27,4 +27,4 @@ jobs:
         run: curl -fsSL https://railway.app/install.sh | bash
 
       - name: Deploy to Railway
-        run: railway up --service backend --project $RAILWAY_PROJECT_ID
+        run: railway up --service backend
