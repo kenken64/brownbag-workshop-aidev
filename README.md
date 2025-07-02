@@ -477,6 +477,8 @@ npx https://github.com/google-gemini/gemini-cli
 
 **Create a working directory** named `todoApp`
 
+**First Prompt:**
+
 ### Developer Persona
 
 Enter the below persona as the prompt:
@@ -508,6 +510,9 @@ Senior Full-Stack Developer | 6 years experience | Bukit Timah | Fintech startup
 Combines Rust's performance and safety with Angular's enterprise capabilities to build scalable, maintainable full-stack applications. Understands cross-stack implications and optimizes for both user experience and system performance.
 
 ### Project Requirements
+
+
+**Second Prompt:**
 
 #### Technical Stack
 - **Frontend:** Angular application
@@ -578,12 +583,13 @@ Application bundle generation failed. [1.235 seconds]
 
 ### UI Enhancement Prompts
 
-**Second Prompt:**
+**third Prompt:**
+```
 - Integrate ng-zorro UI components and styling
 - Center-align the todo canvas on the screen
 - Improve the overall presentation and user experience
 use context7
-
+```
 ### Ng-Zorro Issues
 
 **Problem:** Ng-zorro failed with multiple errors:
