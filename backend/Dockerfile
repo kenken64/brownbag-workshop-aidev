@@ -36,7 +36,7 @@ RUN apt-get update && apt-get install -y openssl && rm -rf /var/lib/apt/lists/*
 COPY --from=backend-builder /app/backend/target/release/backend ./backend
 
 # Copy the built frontend static files
-COPY --from=frontend-builder /app/frontend/dist/frontend ./backend/static
+COPY --from=frontend-builder /app/frontend/dist/frontend/browser ./backend/static
 
 # Copy the SQLite database (if it exists and is pre-populated)
 # If your database is created at runtime, you might not need this.
