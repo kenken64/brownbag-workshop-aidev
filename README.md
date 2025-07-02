@@ -627,7 +627,7 @@ This workshop guide provides comprehensive instructions for setting up a full-st
 
 ### GIT PUSH YOUR CODE ! Kindly use the Gemini CLI not the git commands
 
-## 4th prompt
+### 4th prompt
 
 ### Project Context
 Create a multi-stage Dockerfile for a full-stack todo application with the following specifications:
