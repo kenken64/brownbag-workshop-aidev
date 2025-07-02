@@ -10,7 +10,7 @@ COPY ../frontend/ .
 RUN npm run build --configuration=production
 
 # Stage 2: Build the Rust backend
-FROM rust:slim-bookworm AS backend-builder
+FROM rust:bookworm AS backend-builder
 
 WORKDIR /app/backend
 
@@ -25,12 +25,14 @@ COPY backend/ .
 RUN cargo build --release
 
 # Stage 3: Final image
-FROM debian:bookworm-slim
+FROM ubuntu:latest
 
 WORKDIR /app
 
 # Install openssl for runtime
-RUN apt-get update && apt-get install -y openssl && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y openssl curl && rm -rf /var/lib/apt/lists/*
+
+ENV RUST_BACKTRACE=1
 
 # Copy the built backend executable
 COPY --from=backend-builder /app/backend/target/release/backend /app/bin/backend
@@ -43,5 +45,7 @@ COPY --from=frontend-builder /app/frontend/dist/frontend/browser /app/static
 # COPY backend/todo.db ./backend/todo.db
 
 EXPOSE 8080
+
+HEALTHCHECK --interval=30s --timeout=10s --retries=3 CMD curl --fail http://localhost:8080/api/todos || exit 1
 
 CMD ["/app/bin/backend"]
