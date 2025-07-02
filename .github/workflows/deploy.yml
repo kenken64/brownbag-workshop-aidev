@@ -25,6 +25,8 @@ jobs:
         run: npm install -g @railway/cli
         
       - name: Deploy to Railway
-        run: railway up . --service impartial-intuition
+        run: |
+          cd backend
+          railway up . --service impartial-intuition
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
