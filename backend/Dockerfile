@@ -10,18 +10,18 @@ COPY ../frontend/ .
 RUN npm run build --configuration=production
 
 # Stage 2: Build the Rust backend
-FROM rustlang/rust:1.79.0-slim-bookworm AS backend-builder
+FROM rust:slim-bookworm AS backend-builder
 
 WORKDIR /app/backend
 
 # Install openssl-dev for rusqlite
-RUN apt-get update && apt-get install -y openssl-dev pkg-config
+RUN apt-get update && apt-get install -y libssl-dev pkg-config
 
-COPY Cargo.toml Cargo.lock ./
+COPY backend/Cargo.toml backend/Cargo.lock ./
 # This step is to cache dependencies
 RUN mkdir src && echo "fn main() {}" > src/main.rs && cargo build --release
 
-COPY . .
+COPY backend/ .
 RUN cargo build --release
 
 # Stage 3: Final image
@@ -33,10 +33,10 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y openssl && rm -rf /var/lib/apt/lists/*
 
 # Copy the built backend executable
-COPY --from=backend-builder /app/backend/target/release/backend ./backend
+COPY --from=backend-builder /app/backend/target/release/backend /app/bin/backend
 
 # Copy the built frontend static files
-COPY --from=frontend-builder /app/frontend/dist/frontend/browser ./backend/static
+COPY --from=frontend-builder /app/frontend/dist/frontend/browser /app/static
 
 # Copy the SQLite database (if it exists and is pre-populated)
 # If your database is created at runtime, you might not need this.
@@ -44,4 +44,4 @@ COPY --from=frontend-builder /app/frontend/dist/frontend/browser ./backend/stati
 
 EXPOSE 8080
 
-CMD ["./backend/backend"]
+CMD ["/app/bin/backend"]
