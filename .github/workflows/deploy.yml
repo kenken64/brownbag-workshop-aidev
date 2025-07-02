@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+  # This is a dummy change to trigger a new deployment
+  workflow_dispatch:
 
 env:
   RAILWAY_PROJECT_ID: ${{ secrets.RAILWAY_PROJECT_ID }}
