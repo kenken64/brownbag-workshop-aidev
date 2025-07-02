@@ -77,6 +77,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let conn = Connection::open("todo.db")?;
     create_table(&conn)?;
 
+    use actix_files::{Files, NamedFile};
+
     HttpServer::new(|| {
         let cors = Cors::default()
             .allow_any_origin()
@@ -91,6 +93,10 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 .route(web::post().to(create_todo)))
             .service(web::resource("/api/todos/{id}").route(web::put().to(update_todo)))
             .service(web::resource("/api/todos/{id}").route(web::delete().to(delete_todo)))
+            .service(Files::new("/", "./static").index_file("index.html"))
+            .default_service(web::get().to(|| async {
+                NamedFile::open_async("./static/index.html").await
+            }))
     })
     .bind(("127.0.0.1", 8080))?
     .run()

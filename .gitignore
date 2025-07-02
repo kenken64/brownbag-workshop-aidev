@@ -9,6 +9,7 @@
 
 # Database
 /backend/todo.db
+/backend/static
 
 # Environment variables
 .env
