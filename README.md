@@ -626,3 +626,50 @@ This workshop guide provides comprehensive instructions for setting up a full-st
 
 
 ### GIT PUSH YOUR CODE ! Kindly use the Gemini CLI not the git commands
+
+### Project Context
+Create a multi-stage Dockerfile for a full-stack todo application with the following specifications:
+
+Application Architecture:
+Frontend: Angular application (Node.js 20)
+Backend: Rust web server using Actix-web framework
+Database: SQLite (embedded, created at runtime)
+Port: Application serves on port 8080
+
+### Dockerfile Requirements
+
+## Stage 1: Frontend Builder
+Use node:20-alpine as base image
+Build Angular application in production mode
+Output static files to dist/frontend/browser/
+
+## Stage 2: Backend Builder
+Use rust:bookworm as base image
+Install system dependencies required for rusqlite compilation (libssl-dev, pkg-config)
+Implement dependency caching optimization (build deps before copying source)
+Compile Rust application in release mode
+Binary name should be backend
+
+## Stage 3: Final Runtime Image
+Use ubuntu:latest as minimal runtime base
+Install only runtime dependencies (openssl, curl)
+Set environment variable RUST_BACKTRACE=1 for debugging
+Copy compiled backend binary to /app/bin/backend
+Copy frontend static files to /app/static/
+Configure backend to serve frontend static files
+Expose port 8080
+Add health check that tests /api/todos endpoint
+Set appropriate working directory
+
+## Optimization Requirements:
+Multi-stage build to minimize final image size
+Layer caching for dependencies (separate from source code)
+Clean up package managers to reduce image size
+Use appropriate base images for each stage
+Runtime Behavior:
+Backend serves both API endpoints (/api/*) and frontend static files
+SQLite database created automatically at runtime (no need to copy)
+Health monitoring via curl to API endpoint
+Container should run the backend executable as the main process
+
+## Generate a production-ready, optimized multi-stage Dockerfile that follows Docker best practices and efficiently builds both the Angular frontend and Rust backend into a single deployable container.
